@@ -2,7 +2,8 @@
 title: MySQL管理命令
 date: '2012-11-28'
 description:
-categories: 技术
+categories: Tech
+tags: [MySQL,Linux]
 ---
 下载
 ----

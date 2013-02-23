@@ -2,7 +2,8 @@
 title: Daemon进程为何需要两次fork
 date: '2012-11-22'
 description:
-categories: 技术
+categories: Tech
+tags: [Daemon,Linux,Fork]
 ---
 Daemon进程
 ---------

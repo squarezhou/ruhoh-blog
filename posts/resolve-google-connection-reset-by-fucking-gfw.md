@@ -2,7 +2,8 @@
 title: 解决Google经常性连接重置
 date: '2013-01-14'
 description:
-categories: 技术
+categories: Tech
+tags: [Google,GFW,userscripts]
 ---
 使用Google搜索的时候，结果中可能会有被墙的页面。由于在打开结果页面时Google会使用自己的域作跳转，因此在打开被墙的页面时，Google搜索也会受牵连，导致一段时间不可访问。明显，解决这个问题最简单有效的办法就是让Google不作跳转，直接打开目标页面。  
 

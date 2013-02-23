@@ -2,7 +2,8 @@
 title: PHP实现Daemon
 date: '2012-11-22'
 description:
-categories: 技术
+categories: Code
+tags: [PHP,Daemon,Linux]
 ---
 	本来准备将此篇与上一篇《[Daemon进程为何需要两次fork][double-fork-when-creating-daemon]》写在一起的，话说本来上一篇是要详细介绍Daemon进程的，无奈语言能力太差，写不出大篇幅，只好写重点，于是本篇只能单独放出来了。
 

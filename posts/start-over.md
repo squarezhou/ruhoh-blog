@@ -3,6 +3,7 @@ title: 我胡汉三又回来啦
 date: '2012-11-19'
 description:
 categories: Blog
+tags:
 ---
 为什么要回来？
 ------------
@@ -25,6 +26,7 @@ categories: Blog
 - 日志不用追求量，重在质
 - 好文放单独页面分享，尽量不转
 - 使用[Markdown](http://daringfireball.net/projects/markdown/ "Markdown")格式，大道至简
+- 使用[Ruhoh](http://ruhoh.com/ "Ruhoh")搭建
 - 使用[Github](https://github.com/ "Github")托管，方便记录和备份
 - 待完善...
 
