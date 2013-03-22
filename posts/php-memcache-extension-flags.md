@@ -26,7 +26,7 @@ tags: [PHP,PECL,Memcached]
 Memcached的flags
 ---------------
 
-Memcached在存储数据时除了可以指定过期时间外，还支持flags参数。`SET key expire flags value_length`，第3个参数就是flags。  
+Memcached在存储数据时除了可以指定过期时间外，还支持flags参数。`SET <key> <flags> <expiration time> <bytes>`，第2个参数就是flags。  
 在Memcached 1.2.1之前为flags预留了16位，到了1.2.1以后预留了32位（4bytes）。对于服务器端而言，并不清楚你设置这些标记的作用，只是在你取数据的时候同时传回给客户端。因此客户端就可以利用这个值来标记数据是否是经过编码的、是压缩过的……PHP Memcached扩展就是这么干的。  
 
 Memcache扩展的flags
