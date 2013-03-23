@@ -5,7 +5,7 @@ description:
 categories: Code
 tags: [PHP,Daemon,Linux]
 ---
-	本来准备将此篇与上一篇《[Daemon进程为何需要两次fork][double-fork-when-creating-daemon]》写在一起的，话说本来上一篇是要详细介绍Daemon进程的，无奈语言能力太差，写不出大篇幅，只好写重点，于是本篇只能单独放出来了。
+本来准备将此篇与上一篇《[Daemon进程为何需要两次fork][double-fork-when-creating-daemon]》写在一起的，话说本来上一篇是要详细介绍Daemon进程的，无奈语言能力太差，写不出大篇幅，只好写重点，于是本篇只能单独放出来了。
 
 关于Daemon进程及如何创建Daemon进程可以继续参考这篇[daemon进程原理及实现][yungang]，这里也不啰嗦，只贴代码。Talk is cheap, show me the code.
 

@@ -5,8 +5,7 @@ description:
 categories: Tech
 tags: [MySQL,Linux]
 ---
-下载
-----
+###下载###
 
 - 访问MySQL[官网下载页面][download_page]  
 - 选择操作系统平台  
@@ -15,8 +14,7 @@ tags: [MySQL,Linux]
 
 最简单的安装方式是使用已编译的二进制包，所以我下载了32位Linux通用版本“Linux - Generic 2.6 (x86, 32-bit), Compressed TAR Archive”，完成后得到[mysql-5.5.28-linux2.6-i686.tar.gz][mysql_55tgz]。
 
-Linux下安装
-----------
+###Linux下安装###
 
 安装命令在根目录的INSTALL-BINARY中有详细说明，直接Copy过来：
 
@@ -38,8 +36,7 @@ Linux下安装
 	# Next command is optional
 	shell> cp support-files/mysql.server /etc/init.d/mysql.server
 
-启动与停止
----------
+###启动与停止###
 
 **启动**
 
@@ -64,8 +61,7 @@ Linux下安装
 
 另一种停止方式是发送TERM信号：KILL(-TERM)，不到万不得已不要使用KILL -9。
 
-修改密码
--------
+###修改密码###
 
 正确命令：
 
@@ -81,8 +77,7 @@ Linux下安装
   
 	bin/mysqld_safe --skip-grant-tables &
 
-开机启动
--------
+###开机启动###
 
 Linux下让程序开机启动最简单的方式是将启动命令加到/etc/rc.local文件中，Linux在开机过程中会自动执行rc.local文件中所有的命令。  
 这里就不能使用相对路径，必须加上完整路径，比如我的是：/usr/local/mysql/bin/mysqld_safe，因此可以执行：
@@ -91,8 +86,7 @@ Linux下让程序开机启动最简单的方式是将启动命令加到/etc/rc.l
 
 这种方式虽简单，但是不能设置关机自动停止MySQL，最佳方式请往下看。
 
-添加Linux服务
-------------
+###添加Linux服务###
 
 关于Linux服务就不多介绍了，读者请自行Google。
  
@@ -120,8 +114,7 @@ Linux下让程序开机启动最简单的方式是将启动命令加到/etc/rc.l
 
 OK，现在MySQL Server能在开机时自动启动并在关机时自动停止了（注意只有以2、3、4、5运行级别启动时才会，查看当前系统运行级别：more /etc/inittab），而且可以通过优雅的service命令来管理啦^_^
 
-卸载
----
+###卸载###
 
 卸载就更简单了，不多说：
 
