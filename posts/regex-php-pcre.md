@@ -3,7 +3,7 @@ title: PHP正则表达式
 date: '2013-07-06'
 description:
 categories: Tech
-tags:PHP,Regex,PCRE
+tags:[PHP,Regex,PCRE]
 ---
 ###占有字符和零宽度（Anchors）###
 
