@@ -135,6 +135,8 @@ preg_replace
 
 (?>pattern)
 
+这种括号对模式的一部分提供了”锁定”，当它包含一个匹配之后， 会阻止未来模式失败后对它内部的后向回溯。后向回溯在这里失效， 其他工作照常进行。
+
 - `(\d+foo)` #在匹配123bar时,第一次失败,回溯匹配23bar,又失败,再回溯匹配3bar,再回溯.
 - `(?>\d+foo)` ?>分组匹配失败后,不会再回溯.
 
@@ -142,6 +144,8 @@ preg_replace
 
 `(?(condition)yes-pattern)`  
 `(?(condition)yes-pattern|no-pattern)`
+
+如果条件满足，使用 yes-pattern，其他情况使用 no-pattern(如果指定了)。 如果有超过 2 个的可选子组，会产生给一个编译期错误。
 
 **递归子组**
 
@@ -152,6 +156,14 @@ php5.4之后,会支持递归子组。
 
 比如:
 
-	#\((?R)*\)#     就可匹配 "((()))"括号对
+	#\((?R)*\)#             就可匹配 "((()))"括号对
 	#(blue|red) (?1)#       就可匹配 "blue red"括号对
 	#(blue|red) (\1)#       只能匹配 "blue blue","red red"
+
+参考：  
+1. [正则表达式30分钟入门教程](http://deerchao.net/tutorials/regex/regex.htm)  
+2. [正则表达式学习参考](http://blog.csdn.net/lxcnn/article/details/4268033)  
+3. [Regular Expression Quick Start](http://www.regular-expressions.info/quickstart.html)  
+4. [PCRE 正则语法](http://www.php.net/manual/zh/reference.pcre.pattern.syntax.php)  
+5. [php中的正则](http://hilojack.sinaapp.com/?p=1348)  
+
