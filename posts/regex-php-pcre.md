@@ -6,6 +6,12 @@ categories: Tech
 tags: [PHP,Regex,PCRE]
 ---
 
+	有关正则表达式和PHP PCRE库的内容很多，这里只列特殊且常用的部分。更多内容请查看页底的参考。
+
+##正则表达式##
+
+---
+
 ###占有字符和零宽度（Anchors）###
 
 正则表达式匹配过程中，如果子表达式匹配到的是字符内容，而非位置，并被保存到最终的匹配结果中，那么就认为这个子表达式是占有字符的；如果子表达式匹配的仅仅是位置，或者匹配的内容并不保存到最终的匹配结果中，那么就认为这个子表达式是零宽度的。
@@ -28,25 +34,64 @@ tags: [PHP,Regex,PCRE]
 
 - 捕获组就是把正则表达式中子表达式匹配的内容，保存到内存中以数字编号或手动命名的组里，以供后面引用。捕获组又分为普通捕获组和命名捕获组：
 
-	表达式|说明
-	-|-
-	(Expression)|普通捕获组，将子表达式Expression匹配的内容保存到以数字编号的组里
-	(?\<name\> Expression)|命名捕获组，将子表达式Expression匹配的内容保存到以name命名的组里
+	<table>
+	<thead>
+	<tr>
+	<th>表达式</th>
+	<th>说明</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<td>(Expression)</td>
+	<td>普通捕获组，将子表达式Expression匹配的内容保存到以数字编号的组里</td>
+	</tr>
+	<tr>
+	<td>(?&lt;name&gt; Expression)</td>
+	<td>命名捕获组，将子表达式Expression匹配的内容保存到以name命名的组里</td>
+	</tr>
+	</tbody>
+	</table>
 
 - 一些表达式中，不得不使用( )，但又不需要保存( )中子表达式匹配的内容，这时可以用非捕获组来抵消使用( )带来的副作用。
 
-	表达式|说明
-	-|-
-	(?:Expression)|进行子表达式Expression的匹配，并将匹配内容保存到最终的整个表达式的区配结果中，但Expression匹配的内容不单独保存到一个组内
+	<table>
+	<thead>
+	<tr>
+	<th>表达式</th>
+	<th>说明</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<td>(?:Expression)</td>
+	<td>进行子表达式Expression的匹配，并将匹配内容保存到最终的整个表达式的区配结果中，但Expression匹配的内容不单独保存到一个组内</td>
+	</tr>
+	</tbody>
+	</table>
 
 **后向引用**
 
 捕获组匹配的内容，可以在正则表达式的外部程序中进行引用，也可以在表达式中进行引用，表达式中引用的方式就是后向引用。
 
-表达式|说明
--|-
-\1，\2|对序号为1和2的捕获组的后向引用
-\k\<name\>|对命名为name的捕获组的后向引用
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\1，\2</td>
+<td>对序号为1和2的捕获组的后向引用</td>
+</tr>
+<tr>
+<td>\k&lt;name&gt;</td>
+<td>对命名为name的捕获组的后向引用</td>
+</tr>
+</tbody>
+</table>
 
 ###环视（Lookaround）###
 
@@ -54,12 +99,32 @@ tags: [PHP,Regex,PCRE]
 
 环视按照方向划分有顺序和逆序两种，按照是否匹配有肯定和否定两种，组合起来就有四种环视。环视相当于对所在位置加了一个附加条件。
 
-表达式|说明
--|-
-(?<=Expression)|逆序肯定环视，表示所在位置左侧能够匹配Expression
-(?<!Expression)|逆序否定环视，表示所在位置左侧不能匹配Expression
-(?=Expression)|顺序肯定环视，表示所在位置右侧能够匹配Expression
-(?!Expression)|顺序否定环视，表示所在位置右侧不能匹配Expression
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(?&lt;=Expression)</td>
+<td>逆序肯定环视，表示所在位置左侧能够匹配Expression</td>
+</tr>
+<tr>
+<td>(?&lt;!Expression)</td>
+<td>逆序否定环视，表示所在位置左侧不能匹配Expression</td>
+</tr>
+<tr>
+<td>(?=Expression)</td>
+<td>顺序肯定环视，表示所在位置右侧能够匹配Expression</td>
+</tr>
+<tr>
+<td>(?!Expression)</td>
+<td>顺序否定环视，表示所在位置右侧不能匹配Expression</td>
+</tr>
+</tbody>
+</table>
 
 *举例：*
 
@@ -67,21 +132,23 @@ tags: [PHP,Regex,PCRE]
 
 `“(?!1)\d+”`在匹配`“123”`时，匹配成功，匹配的结果为`“23”`。`“\d+”`匹配一个以上数字，但是附加条件`“(?!1)”`要求所在位置右侧不能是`“1”`，所以匹配成功的位置是`“2”`前面的位置。
 
-###PHP正则（PCRE）###
+##PHP正则（PCRE）##
+
+---
 
 PHP的正则表达式主要是基于Perl的PCRE实现和基于POSIX的EREG实现。由于EREG在PHP 5.3.0及以后版本已经弃用，所以这里只讨论PCRE正则库。
 
-**分隔符（delimiters）**
+###分隔符（delimiters）###
 
 当使用 PCRE 函数的时候，模式需要由分隔符闭合包裹。分隔符可以使任意非字母数字、非反斜线、非空白字符。
 
 经常使用的分隔符是正斜线(/)、hash符号(#) 以及取反符号(~)。
 
-**转义序列（escape）**
+###转义序列（escape）###
 
 PHP正则里面要匹配一个反斜线， 模式中必须写为 `“\\\\”`。（首先作为字符串，反斜线会进行转义，成为`/\\/`，最后正则转义一次，得到`/\/`）
 
-**修饰符（modifiers）**
+###修饰符（modifiers）###
 
 内部修饰符：(?修饰符)
 
@@ -91,24 +158,73 @@ PHP正则里面要匹配一个反斜线， 模式中必须写为 `“\\\\”`。
 
 外部修饰符：
 
-修饰符|表示含义
--|-
-i(PCRE_CASELESS)|忽略字符敏感
-m(PCRE_MULTILINE)|多行模式
-s(PCRE_DOTALL)|.号匹配换行
-u(PCRE_UTF8)|匹配utf8字符(unicode)(与perl不兼容)
-U(PCRE_UNGREEDY)|去贪婪(与perl不兼容)
-e(PREG_REPLACE_EVAL)|仅在perg_replace时生效，当有e时，会对replace后的字符进行eval（不建议使用e）
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>表示含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i(PCRE_CASELESS)</td>
+<td>忽略字符敏感</td>
+</tr>
+<tr>
+<td>m(PCRE_MULTILINE)</td>
+<td>多行模式</td>
+</tr>
+<tr>
+<td>s(PCRE_DOTALL)</td>
+<td>.号匹配换行</td>
+</tr>
+<tr>
+<td>u(PCRE_UTF8)</td>
+<td>匹配utf8字符(unicode)(与perl不兼容)</td>
+</tr>
+<tr>
+<td>U(PCRE_UNGREEDY)</td>
+<td>去贪婪(与perl不兼容)</td>
+</tr>
+<tr>
+<td>e(PREG_REPLACE_EVAL)</td>
+<td>仅在perg_replace时生效，当有e时，会对replace后的字符进行eval（不建议使用e）</td>
+</tr>
+</tbody>
+</table>
 
-**子组（subpatterns）**
+###子组（subpatterns）###
 
-表达式|说明
--|-
-(pattern)|普通捕获组
-(?P\<name\>pattern)|命名捕获组，PHP 4.3.3及以上
-(?\<name\>pattern)|命名捕获组，PHP 5.2.2及以上
-(?'name'pattern)|命名捕获组，PHP 5.2.2及以上
-(?:pattern)|非捕获组
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(pattern)</td>
+<td>普通捕获组</td>
+</tr>
+<tr>
+<td>(?P&lt;name&gt;pattern)</td>
+<td>命名捕获组，PHP 4.3.3及以上</td>
+</tr>
+<tr>
+<td>(?&lt;name&gt;pattern)</td>
+<td>命名捕获组，PHP 5.2.2及以上</td>
+</tr>
+<tr>
+<td>(?'name'pattern)</td>
+<td>命名捕获组，PHP 5.2.2及以上</td>
+</tr>
+<tr>
+<td>(?:pattern)</td>
+<td>非捕获组</td>
+</tr>
+</tbody>
+</table>
 
 - `'/(sum) min/'` #捕获一个子组(子组序号最多99个)
 - `'/(?<total>sum) min/'` #命名一个子组
@@ -116,23 +232,51 @@ e(PREG_REPLACE_EVAL)|仅在perg_replace时生效，当有e时，会对replace后
 - `'/(?|(sum)|(total)) min/'` #不捕获本子组,但在有'|'时,(sum)与(total)反向引用都占1.如果使用'?:',"sum"与"total"会分别占用\1和\2
 - `'/(?Ui:sum) min/'` #?与:之间可以加修饰符.等价于'/(?:(?Ui)sum) min/'
 
-**后向引用**
+###后向引用###
 
 preg_match
 
-类型|表达式
--|-
-普通捕获组|\1、\g1、\g{1}（PHP 5.2.2及以上\g 转义序列可以用于子模式的绝对和相对引用）
-命名捕获组|\k\<name\> 或 \k'name'（PHP 5.2.2及以上）
-命名捕获组|\k{name} 和 \g{name}（PHP 5.2.4及以上）
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通捕获组</td>
+<td>\1、\g1、\g{1}（PHP 5.2.2及以上\g 转义序列可以用于子模式的绝对和相对引用）</td>
+</tr>
+<tr>
+<td>命名捕获组</td>
+<td>\k&lt;name&gt; 或 \k'name'（PHP 5.2.2及以上）</td>
+</tr>
+<tr>
+<td>命名捕获组</td>
+<td>\k{name} 和 \g{name}（PHP 5.2.4及以上）</td>
+</tr>
+</tbody>
+</table>
 
 preg_replace
 
-类型|表达式
--|-
-普通捕获组|\1、$1、${1}
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通捕获组</td>
+<td>\1、$1、${1}</td>
+</tr>
+</tbody>
+</table>
 
-**非回溯子组**
+###非回溯子组###
 
 (?>pattern)
 
@@ -141,14 +285,14 @@ preg_replace
 - `(\d+foo)` #在匹配123bar时,第一次失败,回溯匹配23bar,又失败,再回溯匹配3bar,再回溯.
 - `(?>\d+foo)` ?>分组匹配失败后,不会再回溯.
 
-**条件子组**
+###条件子组###
 
 `(?(condition)yes-pattern)`  
 `(?(condition)yes-pattern|no-pattern)`
 
 如果条件满足，使用 yes-pattern，其他情况使用 no-pattern(如果指定了)。 如果有超过 2 个的可选子组，会产生给一个编译期错误。
 
-**递归子组**
+###递归子组###
 
 php5.4之后,会支持递归子组。
 
@@ -157,9 +301,9 @@ php5.4之后,会支持递归子组。
 
 比如:
 
-	#\((?R)*\)#             就可匹配 "((()))"括号对
-	#(blue|red) (?1)#       就可匹配 "blue red"括号对
-	#(blue|red) (\1)#       只能匹配 "blue blue","red red"
+- `#\((?R)*\)#` 匹配 "((()))"括号对
+- `#(blue|red) (?1)#` 匹配 "blue red"括号对
+- `#(blue|red) (\1)#` 只能匹配 "blue blue","red red"
 
 参考：  
 1. [正则表达式30分钟入门教程](http://deerchao.net/tutorials/regex/regex.htm)  
