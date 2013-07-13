@@ -10,7 +10,7 @@ tags: [PHP,Regex,PCRE]
 
 ##正则表达式##
 
----
+------
 
 ###占有字符和零宽度（Anchors）###
 
@@ -75,7 +75,7 @@ tags: [PHP,Regex,PCRE]
 
 ##PHP正则（PCRE）##
 
----
+------
 
 PHP的正则表达式主要是基于Perl的PCRE实现和基于POSIX的EREG实现。由于EREG在PHP 5.3.0及以后版本已经弃用，所以这里只讨论PCRE正则库。
 
